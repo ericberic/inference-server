@@ -1,0 +1,10 @@
+# Ignore Terraform directories
+**/.terraform*
+# Ignore Terraform state files
+**/terraform.tfstate*
+# Ignore Terraform plan files
+**/*.tfplan
+# Ignore Terraform variable files
+**/*.tfvars
+# Ignore workspace files
+*.code-workspace

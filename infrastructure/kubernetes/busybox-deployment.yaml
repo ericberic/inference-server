@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-box
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-box
+  template:
+    metadata:
+      labels:
+        app: my-box
+    spec:
+      containers:
+      - name: my-box
+        image: busybox
+        command: ["sleep", "3600"]  # Keep the pod alive for an hour

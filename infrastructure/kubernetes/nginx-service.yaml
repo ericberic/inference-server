@@ -1,0 +1,13 @@
+# nginx-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx  # This must match the labels from the Nginx deployment
+  ports:
+    - protocol: TCP
+      port: 80  # Expose port 80 for the service
+      targetPort: 80  # Route traffic to container's port 80
+  type: ClusterIP  # Default service type for internal communication in the cluster
