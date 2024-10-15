@@ -28,4 +28,5 @@ This endeavor serves both as my own personal learning experience and an opportun
 ## Acknowledgments
 
 - Terraform sources based on [https://github.com/hashicorp/learn-terraform-provision-eks-cluster](https://github.com/hashicorp/learn-terraform-provision-eks-cluster) licensed under MPL2
+- The IAM policies are configured as recommended by [K8s autoscaler AWS gotchas](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md)
 - License: Mozilla Public License 2.0 (MPL 2.0)
