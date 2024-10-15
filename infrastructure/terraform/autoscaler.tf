@@ -30,10 +30,14 @@ resource "aws_iam_policy" "cluster_autoscaler_policy" {
                 "autoscaling:DescribeAutoScalingGroups",
                 "autoscaling:DescribeAutoScalingInstances",
                 "autoscaling:DescribeLaunchConfigurations",
-                "autoscaling:DescribeTags",
+                "autoscaling:DescribeScalingActivities",
                 "autoscaling:SetDesiredCapacity",
                 "autoscaling:TerminateInstanceInAutoScalingGroup",
-                "ec2:DescribeLaunchTemplateVersions"
+                "ec2:DescribeImages",
+                "ec2:DescribeInstanceTypes",
+                "ec2:DescribeLaunchTemplateVersions",
+                "ec2:GetInstanceTypesFromInstanceRequirements",
+                "eks:DescribeNodegroup"
             ]
       Effect   = "Allow"
       Resource = "*"
@@ -41,6 +45,7 @@ resource "aws_iam_policy" "cluster_autoscaler_policy" {
     Version = "2012-10-17"
   })
 }
+
 
 resource "aws_iam_role_policy_attachment" "cluster_autoscaler_attach" {
   role       = aws_iam_role.cluster_autoscaler_role.name
