@@ -53,7 +53,7 @@ module "eks" {
   version = "20.8.5"
 
   cluster_name    = local.cluster_name
-  cluster_version = "1.29"
+  cluster_version = "1.31"
 
   cluster_endpoint_public_access           = true
   enable_cluster_creator_admin_permissions = true
@@ -93,6 +93,26 @@ module "eks" {
       min_size     = 1
       max_size     = 5
       desired_size = 2
+    }
+
+    t3a-large-group = {
+      name = "t3a-large-group"
+
+      instance_types = ["t3a.large"]
+
+      min_size     = 0
+      max_size     = 3
+      desired_size = 0
+    }
+
+    # These are $1.006 per hour from https://aws.amazon.com/ec2/instance-types/g5/
+    g5-xlarge-group = {
+      name = "g5-xlarge-group"
+      instance_types = ["g5.xlarge"]
+
+      min_size     = 0
+      max_size     = 2
+      desired_size = 0
     }
   }
 }
