@@ -62,6 +62,9 @@ module "eks" {
     aws-ebs-csi-driver = {
       service_account_role_arn = module.irsa-ebs-csi.iam_role_arn
     }
+
+    # TODO add vpc-cni to speed up comms between pods
+    # https://medium.com/aws-infrastructure/setup-kubernetes-cluster-with-aws-eks-and-terraform-c46d5e916ad9
   }
 
   enable_irsa = true  # Explicitly enabling IRSA
@@ -110,9 +113,21 @@ module "eks" {
       name = "g5-xlarge-group"
       instance_types = ["g5.xlarge"]
 
+      # EKS node with GPU support
+      ami_type = "AL2_x86_64_GPU"
+
       min_size     = 0
       max_size     = 2
       desired_size = 0
+
+      # Prevent CPU-only jobs from being scheduled on this GPU node
+      taints = {
+        dedicated = {
+          key    = "nvidia.com/gpu"
+          value  = "true"
+          effect = "NoSchedule"
+        }
+      }
     }
   }
 }
