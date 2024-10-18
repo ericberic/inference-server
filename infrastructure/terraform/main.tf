@@ -125,7 +125,7 @@ module "eks" {
         dedicated = {
           key    = "nvidia.com/gpu"
           value  = "true"
-          effect = "NoSchedule"
+          effect = "NO_SCHEDULE"
         }
       }
     }
